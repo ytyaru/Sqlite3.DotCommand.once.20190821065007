@@ -23,3 +23,9 @@ sqlite3 :memory: \
 ".once '| xargs -I@ zenity --info --text \"@\"'" \
 "select 1, 'AAA' union select 2, 'BBB';"
 
+# PIPE 複数行
+sqlite3 :memory: \
+".separator '|' '\\\n' " \
+".once '| xargs -I@ zenity --info --text \"`printf \"@\"`\"  '" \
+"select 1, 'AAA' union select 2, 'BBB';"
+
